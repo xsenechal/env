@@ -1,0 +1,82 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+
+=begin
+# to resize the virtual disk: 
+vagrant box add ubuntu/xenial64 --box-version 20160715.0.0
+cd ~/.vagrant.d/boxes/ubuntu-VAGRANTSLASH-xenial64/20160715.0.0/virtualbox/
+VBoxManage clonehd ubuntu-xenial-16.04-cloudimg.vmdk tmp-disk.vdi --format vdi
+VBoxManage modifyhd tmp-disk.vdi --resize 61440               # 60 GB
+VBoxManage clonehd tmp-disk.vdi resized-disk.vmdk --format vmdk
+rm tmp-disk.vdi ubuntu-xenial-16.04-cloudimg.vmdk
+mv resized-disk.vmdk ubuntu-xenial-16.04-cloudimg.vmdk
+=end
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.box_version = "20160715.0.0"
+  config.vm.hostname = "xl"
+  config.vbguest.auto_update = false
+
+  config.vm.network "private_network", ip: "192.168.59.103"
+
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "xl"
+    vb.gui = true
+    vb.memory = "2048"
+    vb.cpus = 2
+  end
+
+  config.vm.provision "shell", privileged: false, inline: <<-SHELL
+    # system
+    sudo apt-get update
+    sudo apt-get upgrade -y
+
+    # locales
+    sudo sed -i 's/us/fr/g' /etc/default/keyboard
+    sudo sh -c 'echo LC_ALL=en_US.UTF-8     >> /etc/default/locale'
+    sudo sh -c 'echo LANG=en_US.UTF-8       >> /etc/default/locale'
+    sudo sh -c 'echo LC_CTYPE=en_US.UTF-8   >> /etc/default/locale'
+
+
+    # ssh
+    sudo apt-get install -y ssh openssh-server --no-install-recommends
+
+    # Vbox guest addition
+    sudo apt-get install -y linux-headers-$(uname -r) build-essential module-assistant dkms virtualbox-guest-x11
+    VB_VERSION=5.0.16
+    wget http://download.virtualbox.org/virtualbox/${VB_VERSION}/VBoxGuestAdditions_${VB_VERSION}.iso
+    sudo mkdir /media/VBoxGuestAdditions
+    sudo mount -o loop,ro VBoxGuestAdditions_*.iso /media/VBoxGuestAdditions
+    sudo yes | sudo sh /media/VBoxGuestAdditions/VBoxLinuxAdditions.run
+    rm VBoxGuestAdditions_*.iso
+    sudo umount /media/VBoxGuestAdditions
+    sudo rmdir /media/VBoxGuestAdditions
+
+    # Xubuntu
+    sudo apt-get install -y xubuntu-desktop
+    # sudo apt-get install -y xfce4 xdm
+
+    # Terminator
+    sudo apt-get install -y terminator
+
+    # users
+    echo 'root:root' | sudo chpasswd
+    echo 'ubuntu:ubuntu' | sudo chpasswd
+    sudo addgroup xs
+    sudo useradd xs --create-home --shell /bin/bash --gid xs --groups sudo
+    echo 'xs:xs' | sudo chpasswd
+    sudo -i -u xs 
+    #sudo su xs
+    cd /home/xs/ 
+    mkdir -p Projects tmp Downloads mnt Documents Applications ${USER}
+
+    
+    
+
+    sudo reboot
+    
+  SHELL
+end
