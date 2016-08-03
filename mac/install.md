@@ -28,6 +28,7 @@ rm -rf fonts
 echo 'ZSH_THEME="agnoster"' >> ~/.zshrc
 ```
 Iterm2 > preferences > profile > color : set contrast to min
+Iterm2 > preferences -> Appearance -> Dim : reduce value
 
 
 
