@@ -5,10 +5,7 @@ credits: https://gist.github.com/kevinelliott/3135044
 Apps
 ----
 [Chrome](http://google.com/chrome),
-[Firefox](http://firefox.com),
 [iTerm](http://iterm2.com),
-[Transmit](http://panic.com/transmit),
-[Sublime Text](http://www.sublimetext.com/dev),
 
 
 
@@ -69,8 +66,8 @@ Set hostname
 
 
 ```bash
-/usr/bin/ruby -e "$(/usr/bin/curl -fksSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"
-brew install caskroom/cask/brew-cask
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew tap caskroom/cask
 ```
 
 ```bash
