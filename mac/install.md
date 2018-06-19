@@ -65,7 +65,8 @@ brew tap caskroom/cask
 
 ```bash
 brew install coreutils # GNU utilies prepending with 'g' (to replace: use --default-names)
-brew install git git-flow wget curl pstree tree htop
+brew install git git-flow wget curl pstree tree htop nodenv
+nodenv init && nodenv install 9.11.2
 
 
 brew cask install google-chrome
