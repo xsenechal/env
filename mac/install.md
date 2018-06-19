@@ -85,6 +85,15 @@ brew cask install atom
 brew cask install github
 ```
 
+# SDKman
+```
+curl -s "https://get.sdkman.io" | bash
+sdk install java 7.0.181-zulu
+sdk install java 8.0.171-oracle
+sdk install maven 3.3.9
+sdk install gradle
+
+```
 
 # Git
 
