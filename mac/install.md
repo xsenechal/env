@@ -43,17 +43,10 @@ defaults write com.apple.finder ShowStatusBar -bool true
 defaults write com.apple.dock show-process-indicators -bool true
 
 #Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 0.02
+defaults write NSGlobalDomain KeyRepeat -int 2
 #Set a shorter Delay until key repeat
-defaults write NSGlobalDomain InitialKeyRepeat -int 12
+defaults write NSGlobalDomain InitialKeyRepeat -int 25
 
-#Disable disk image verification
-defaults write com.apple.frameworks.diskimages skip-verify -bool true &&
-defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true &&
-defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
-
-#Show the ~/Library folder
-chflags nohidden ~/Library
 ```
 
 Set hostname
@@ -74,15 +67,21 @@ brew tap caskroom/cask
 brew install coreutils # GNU utilies prepending with 'g' (to replace: use --default-names)
 brew install git git-flow wget curl pstree tree htop
 
-brew cask install atom
-brew cask install github
+
 brew cask install google-chrome
+brew cask install firefox
 brew cask install iterm2
 brew cask install spotify
-brew cask install steam
+brew cask install virtualbox
+brew cask install docker
+brew cask install intellij-idea
+
+
+
 brew cask install vagrant
 brew cask install vagrant-manager
-brew cask install virtualbox
+brew cask install atom
+brew cask install github
 ```
 
 
