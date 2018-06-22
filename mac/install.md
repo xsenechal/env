@@ -76,7 +76,7 @@ brew cask install spotify
 brew cask install virtualbox
 brew cask install docker
 brew cask install intellij-idea
-
+brew cask install skype
 
 
 brew cask install vagrant
