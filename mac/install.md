@@ -79,6 +79,7 @@ brew cask install intellij-idea
 brew cask install skype
 brew cask install teamviewer
 brew cask install dropbox
+brew cask install dbeaver-community
 brew install python
 sudo python -m ensurepip
 # quicklook finder https://github.com/sindresorhus/quick-look-plugins
