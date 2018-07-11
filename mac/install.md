@@ -79,6 +79,9 @@ brew cask install intellij-idea
 brew cask install skype
 brew cask install teamviewer
 brew cask install dropbox
+# quicklook finder https://github.com/sindresorhus/quick-look-plugins
+brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize webpquicklook suspicious-package quicklookase qlvideo
+
 
 
 brew cask install vagrant
