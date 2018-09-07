@@ -48,6 +48,8 @@ defaults write com.apple.dock show-process-indicators -bool true
 defaults write NSGlobalDomain KeyRepeat -int 2
 #Set a shorter Delay until key repeat
 defaults write NSGlobalDomain InitialKeyRepeat -int 25
+# reativate key repeate since Macos HighSierra
+defaults write -g ApplePressAndHoldEnabled -bool false
 
 ```
 
