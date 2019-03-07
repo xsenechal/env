@@ -125,3 +125,29 @@ git config --global github.token your_token_here
 git config --global core.editor "subl -w"
 git config --global color.ui true
 ```
+
+# Turbo boost
+https://github.com/rugarciap/Turbo-Boost-Switcher/issues/4
+sudo nano /Library/LaunchDaemons/com.turbo-boost-switcher.plist
+```bash
+<?xml version="1.0" encoding="UTF-8"?>                                                                                             
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+         <key>Label</key>
+         <string>com.turbo-boost-switcher</string>
+         <key>ProgramArguments</key>
+         <array>
+           <string>/Applications/Turbo Boost Switcher.app/Contents/MacOS/Turbo Boost Switcher</string>
+         </array>
+         <key>RunAtLoad</key>
+         <true/>
+         <key>KeepAlive</key>
+         <true/>
+</dict>
+</plist>
+```
+
+# alt tab same application
+System Prefs > Keyboard > Shortcuts > Keyboard 
+"Move focus to next windows" -> alt tab
